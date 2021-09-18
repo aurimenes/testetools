@@ -92,8 +92,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="view\frmPrincipal.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="view\u_frmPrincipal.pas">
+            <Form>frmPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="model\classServicos.pas"/>
@@ -104,6 +104,11 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="dao\daoFarmaceutico.pas"/>
+        <DCCReference Include="dao\dao.pas"/>
+        <DCCReference Include="model\classe.pas"/>
+        <DCCReference Include="controller\controlFarmaceutico.pas"/>
+        <DCCReference Include="controller\controle.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

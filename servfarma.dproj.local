@@ -1,17 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2021/09/18 10:02:43.468,=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 10:03:08.637,C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.pas=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 10:03:08.637,C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.dfm=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/09/18 10:03:24.451,C:\_Dots\Projetos\Teste ToolsPharma\servfarma.dproj=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2021/09/18 11:45:13.461,=C:\_Dots\Projetos\Teste ToolsPharma\model\classServicos.pas</Transaction>
-    <Transaction>2021/09/18 11:48:03.435,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 11:48:12.813,C:\_Dots\Projetos\Teste ToolsPharma\model\classFarmaceutico.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 12:01:53.698,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 12:02:12.329,C:\_Dots\Projetos\Teste ToolsPharma\model\classPacientes.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 12:15:02.455,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 12:15:17.373,C:\_Dots\Projetos\Teste ToolsPharma\uDM.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 12:15:17.373,C:\_Dots\Projetos\Teste ToolsPharma\uDM.dfm=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.dfm</Transaction>
+	<Transactions>
+    <Transaction>2021/09/18 10:02:43.000.468,=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 10:03:08.000.637,C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.dfm</Transaction>
+    <Transaction>2021/09/18 10:03:08.000.637,C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.pas</Transaction>
+    <Transaction>2021/09/18 10:03:24.000.451,C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\_Dots\Projetos\Teste ToolsPharma\servfarma.dproj</Transaction>
+    <Transaction>2021/09/18 11:45:13.000.461,=C:\_Dots\Projetos\Teste ToolsPharma\model\classServicos.pas</Transaction>
+    <Transaction>2021/09/18 11:48:03.000.435,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 11:48:12.000.813,C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas=C:\_Dots\Projetos\Teste ToolsPharma\model\classFarmaceutico.pas</Transaction>
+    <Transaction>2021/09/18 12:01:53.000.698,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 12:02:12.000.329,C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas=C:\_Dots\Projetos\Teste ToolsPharma\model\classPacientes.pas</Transaction>
+    <Transaction>2021/09/18 12:15:02.000.455,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 12:15:17.000.373,C:\_Dots\Projetos\Teste ToolsPharma\Unit1.dfm=C:\_Dots\Projetos\Teste ToolsPharma\uDM.dfm</Transaction>
+    <Transaction>2021/09/18 12:15:17.000.373,C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas=C:\_Dots\Projetos\Teste ToolsPharma\uDM.pas</Transaction>
+    <Transaction>2021/09/18 16:51:55.127,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 16:52:04.587,C:\_Dots\Projetos\Teste ToolsPharma\dao\daoFarmaceutico.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 16:53:52.396,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 16:53:58.462,C:\_Dots\Projetos\Teste ToolsPharma\dao\dao.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:07:17.652,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:07:36.184,C:\_Dots\Projetos\Teste ToolsPharma\model\classe.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:34:43.555,C:\_Dots\Projetos\Teste ToolsPharma\view\u_frmPrincipal.pas=C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.pas</Transaction>
+    <Transaction>2021/09/18 17:34:43.555,C:\_Dots\Projetos\Teste ToolsPharma\view\u_frmPrincipal.dfm=C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.dfm</Transaction>
+    <Transaction>2021/09/18 17:37:03.353,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:37:52.023,C:\_Dots\Projetos\Teste ToolsPharma\controller\controlFarmaceutico.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:38:27.432,=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
+    <Transaction>2021/09/18 17:38:38.215,C:\_Dots\Projetos\Teste ToolsPharma\controller\controle.pas=C:\_Dots\Projetos\Teste ToolsPharma\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

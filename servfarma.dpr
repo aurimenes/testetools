@@ -2,11 +2,16 @@ program servfarma;
 
 uses
   Vcl.Forms,
-  frmPrincipal in 'view\frmPrincipal.pas' {Form1},
+  u_frmPrincipal in 'view\u_frmPrincipal.pas' {frmPrincipal},
   classServicos in 'model\classServicos.pas',
   classFarmaceutico in 'model\classFarmaceutico.pas',
   classPacientes in 'model\classPacientes.pas',
-  uDM in 'uDM.pas' {DM: TDataModule};
+  uDM in 'uDM.pas' {DM: TDataModule},
+  daoFarmaceutico in 'dao\daoFarmaceutico.pas',
+  dao in 'dao\dao.pas',
+  classe in 'model\classe.pas',
+  controlFarmaceutico in 'controller\controlFarmaceutico.pas',
+  controle in 'controller\controle.pas';
 
 {$R *.res}
 
@@ -15,6 +20,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Serviços Farmacêuticos';
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;
 end.
