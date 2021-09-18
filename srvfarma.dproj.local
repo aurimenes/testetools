@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-  <Transactions>
-    <Transaction>2021/09/18 07:27:33.631,=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 07:28:26.908,C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.fmx=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2021/09/18 07:28:26.908,C:\_Dots\Projetos\Teste ToolsPharma\view\frmPrincipal.pas=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/09/18 07:28:48.612,C:\_Dots\Projetos\Teste ToolsPharma\srvfarma.dproj=C:\Users\Aurimenes\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-  </Transactions>
-</BorlandProject>

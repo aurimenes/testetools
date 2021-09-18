@@ -9,3 +9,10 @@ _exemplos/ProjetoMVC-AndreCelestino/ProjetoMVC.res
 _exemplos/ProjetoMVC-AndreCelestino/ProjetoMVC_Icon.ico
 _exemplos/ProjetoMVC-AndreCelestino/View/unitCadastro.dfm
 _exemplos/ProjetoMVC-AndreCelestino/View/unitCadastro.pas
+view/__history/frmPrincipal.fmx.~1~
+view/__recovery/__recovery.ini
+view/__recovery/frmPrincipal.fmx
+view/__recovery/frmPrincipal.pas
+Win32/Debug/classServicos.dcu
+Win32/Debug/frmPrincipal.dcu
+Win32/Debug/srvfarma.exe
