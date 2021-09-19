@@ -102,6 +102,8 @@ begin
 end;
 
 procedure TfrmCadServico.FormShow(Sender: TObject);
+var
+  CodServico: Integer;
 begin
   if Servico.Id = -1 then
   begin
@@ -110,8 +112,10 @@ begin
   end
   else
   begin
-    Servico := TServico(ControleServ.Carregar(Servico.Id));
+    CodServico := Servico.Id;
+    Servico := TServico(ControleServ.Carregar(CodServico));
     lblCodServico.Caption := IntToStr(Servico.Id);
+id retornando zero na edição
     cmbFarmaceutico.ItemIndex := cmbFarmaceutico.Items.IndexOf(Servico.Farmaceutico.Nome);
     cmbPaciente.ItemIndex := cmbPaciente.Items.IndexOf(Servico.Paciente.Nome);
     lblValorTotal.Caption := FormatCurr(',0.00', Servico.ValorTotal);
