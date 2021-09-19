@@ -14,6 +14,7 @@ type
     constructor Create(DB: TFDConnection);
     destructor Destroy;
     procedure Gravar(Classe: TClasse); Virtual; Abstract;
+    procedure Excluir(AId: Integer); Virtual; Abstract;
     function Carregar(AId: Integer): TClasse; Virtual; Abstract;
     procedure Listar(var ALista: TList); 
   end;
@@ -54,6 +55,8 @@ begin
       TClasse(ALista[Cont]).Free;
     end;
   end;
+
+  ALista.Clear;
 end;
 
 end.

@@ -12,6 +12,7 @@ type TControlFarmaceutico = class(TControle)
     constructor Create(DB: TFDConnection);
     destructor Destroy;
     procedure Gravar(Classe: TClasse); override;
+    procedure Excluir(AId: Integer); override;
     function Carregar(AId: Integer): TClasse;
     procedure Listar(var ALista: TList);
 end;
@@ -37,6 +38,13 @@ end;
 destructor TControlFarmaceutico.Destroy;
 begin
   FDao.Free;
+end;
+
+procedure TControlFarmaceutico.Excluir(AId: Integer);
+begin
+  inherited;
+
+  FDao.Excluir(AId);
 end;
 
 procedure TControlFarmaceutico.Gravar(Classe: TClasse);

@@ -10,6 +10,7 @@ type TControle = Class
     constructor Create(DB: TFDConnection); virtual; abstract;
     destructor Destroy; virtual; abstract;
     procedure Gravar(Classe: TClasse); virtual; abstract;
+    procedure Excluir(AId: Integer); Virtual; Abstract;
     function Carregar(AId: Integer): TClasse; virtual; abstract;
     procedure Listar(var ALista: TList); virtual; abstract;
 End;

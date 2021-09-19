@@ -9,6 +9,7 @@ type
   private
   public
     procedure Gravar(Classe: TClasse); Override;
+    procedure Excluir(AId: Integer); Override;
     function Carregar(AId: Integer): TClasse; Override;
     procedure Listar(var ALista: TList);
   end;
@@ -43,6 +44,18 @@ begin
   end;
 end;
 
+procedure TDaoFarmaceutico.Excluir(AId: Integer);
+begin
+  inherited;
+
+  qryConsulta.Close;
+  qryConsulta.SQL.Clear;
+  qryConsulta.SQL.Add('delete from farmaceuticos');
+  qryConsulta.SQL.Add('where far_id = :far_id');
+  qryConsulta.ParamByName('far_id').AsInteger := AId;
+  qryConsulta.ExecSQL;
+end;
+
 procedure TDaoFarmaceutico.Gravar(Classe: TClasse);
 begin
   try
@@ -50,7 +63,6 @@ begin
     begin
       qryConsulta.SQL.Add('insert into farmaceuticos (far_nome)');
       qryConsulta.SQL.Add('values (:far_nome)');
-      qryConsulta.ParamByName('far_nome').AsInteger := Classe.Id;
       qryConsulta.ParamByName('far_nome').AsString := TFarmaceutico(Classe).Nome;
       qryConsulta.ExecSQL;
 
@@ -75,12 +87,25 @@ begin
 end;
 
 procedure TDaoFarmaceutico.Listar(var ALista: TList);
+var
+  Farmac: TFarmaceutico;
 begin
   inherited;
 
+  qryConsulta.Close;
+  qryConsulta.SQL.Clear;
+  qryConsulta.SQL.Add('select far_id, far_nome from farmaceuticos');
+  qryConsulta.SQL.Add('order by far_nome');
+  qryConsulta.Open;
 
-
-
+  while not qryConsulta.Eof do
+  begin
+    Farmac := TFarmaceutico.Create;
+    Farmac.Id := qryConsulta.FieldByName('far_id').AsInteger;
+    Farmac.Nome := qryConsulta.FieldByName('far_nome').AsString;
+    ALista.Add(Farmac);
+    qryConsulta.Next;
+  end;
 end;
 
 end.

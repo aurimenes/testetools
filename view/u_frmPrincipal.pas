@@ -3,8 +3,9 @@ unit u_frmPrincipal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.ExtCtrls, Vcl.Buttons;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.ExtCtrls,
+  Vcl.Buttons;
 
 type
   TfrmPrincipal = class(TForm)
@@ -36,18 +37,17 @@ implementation
 
 {$R *.dfm}
 
-uses classFarmaceutico, uDM, controlFarmaceutico;
+uses uDM, classServico;
 
 procedure TfrmPrincipal.SpeedButton1Click(Sender: TObject);
 var
-  ContFarmac: TControlFarmaceutico;
-  Lista: TList;
+  Cont: Integer;
+  Servico: TServico;
 begin
-  ContFarmac := TControlFarmaceutico.Create(DM.DB);
-  Lista := TList.Create;
-  ContFarmac.Listar(Lista);
-  FreeAndNil(Lista);
-  FreeAndNil(ContFarmac);
+  Servico := TServico.Create;
+  Servico.Farmaceutico.Nome := 'teste';
+  ShowMessage(Servico.Farmaceutico.Nome);
+  FreeAndNil(Servico);
 end;
 
 procedure TfrmPrincipal.SpeedButton4Click(Sender: TObject);
