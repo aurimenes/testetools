@@ -14,6 +14,7 @@ object frmPrincipal: TfrmPrincipal
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -694,6 +695,7 @@ object frmPrincipal: TfrmPrincipal
         7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F7B6F
         7B6F7B6F7B6F}
       Layout = blGlyphTop
+      OnClick = SpeedButton2Click
       ExplicitLeft = 78
       ExplicitTop = -4
       ExplicitHeight = 95
@@ -1791,7 +1793,7 @@ object frmPrincipal: TfrmPrincipal
       end
     end
   end
-  object StringGrid1: TStringGrid
+  object grdServicos: TStringGrid
     Left = 0
     Top = 97
     Width = 759

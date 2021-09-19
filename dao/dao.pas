@@ -16,7 +16,7 @@ type
     procedure Gravar(Classe: TClasse); Virtual; Abstract;
     procedure Excluir(AId: Integer); Virtual; Abstract;
     function Carregar(AId: Integer): TClasse; Virtual; Abstract;
-    procedure Listar(var ALista: TList); 
+    procedure Listar(ALista: TList);
   end;
 
 implementation
@@ -41,20 +41,20 @@ begin
   FLista.Free;
 end;
 
-procedure TDao.Listar(var ALista: TList);
+procedure TDao.Listar(ALista: TList);
 var
   Cont: Integer;
 begin
   if not Assigned(ALista) then
     raise Exception.Create('Lista deve ser criada!');
 
-  if (ALista.Count > 0) then // Limpa a lista, se já possuir objetos
-  begin
-    for Cont := 0 to ALista.Count - 1 do
-    begin
-      TClasse(ALista[Cont]).Free;
-    end;
-  end;
+//  if (ALista.Count > 0) then // Limpa a lista, se já possuir objetos
+//  begin
+//    for Cont := ALista.Count - 1 downto 0 do
+//    begin
+//      TClasse(ALista[Cont]).Free;
+//    end;
+//  end;
 
   ALista.Clear;
 end;

@@ -11,7 +11,7 @@ type
     procedure Gravar(Classe: TClasse); Override;
     procedure Excluir(AId: Integer); Override;
     function Carregar(AId: Integer): TClasse; Override;
-    procedure Listar(var ALista: TList);
+    procedure Listar(ALista: TList);
   end;
 
 implementation
@@ -90,7 +90,7 @@ begin
   end;
 end;
 
-procedure TDaoTipo.Listar(var ALista: TList);
+procedure TDaoTipo.Listar(ALista: TList);
 var
   Tipo: TTipo;
 begin

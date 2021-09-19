@@ -16,18 +16,18 @@ type
     procedure SetObservacoes(const Value: TStringList);
     procedure SetItens(const Value: TList);
     procedure SetFarmaceutico(const Value: TFarmaceutico);
+    procedure SetValorTotal(const Value: Currency);
+    procedure SetPaciente(const Value: TPaciente);
   public
     constructor Create;
     destructor Destroy;
 
-    procedure SetPaciente(Id: Integer);
-
-    property Id: Integer read FID;
-    property Farmaceutico: TFarmaceutico read FFarmaceutico;
-    property Paciente: TPaciente read FPaciente;
+    property Id: Integer read FID write FID;
+    property Farmaceutico: TFarmaceutico read FFarmaceutico write SetFarmaceutico;
+    property Paciente: TPaciente read FPaciente write SetPaciente;
     property Observacoes: TStringList read FObservacoes write SetObservacoes;
     property Itens: TList read FItens write SetItens;
-    property ValorTotal: Currency read FValorTotal;
+    property ValorTotal: Currency read FValorTotal write SetValorTotal;
   end;
 
 implementation
@@ -65,9 +65,14 @@ begin
   FObservacoes := Value;
 end;
 
-procedure TServico.SetPaciente(Id: Integer);
+procedure TServico.SetPaciente(const Value: TPaciente);
 begin
+  FPaciente := Value;
+end;
 
+procedure TServico.SetValorTotal(const Value: Currency);
+begin
+  FValorTotal := Value;
 end;
 
 end.

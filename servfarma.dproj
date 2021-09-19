@@ -114,6 +114,12 @@
         <DCCReference Include="dao\daoTipo.pas"/>
         <DCCReference Include="model\classTipo.pas"/>
         <DCCReference Include="controller\controlTipo.pas"/>
+        <DCCReference Include="dao\daoServico.pas"/>
+        <DCCReference Include="controller\controlServico.pas"/>
+        <DCCReference Include="view\u_frmCadServico.pas">
+            <Form>frmCadServico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

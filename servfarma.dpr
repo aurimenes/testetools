@@ -16,7 +16,10 @@ uses
   daoPaciente in 'dao\daoPaciente.pas',
   daoTipo in 'dao\daoTipo.pas',
   classTipo in 'model\classTipo.pas',
-  controlTipo in 'controller\controlTipo.pas';
+  controlTipo in 'controller\controlTipo.pas',
+  daoServico in 'dao\daoServico.pas',
+  controlServico in 'controller\controlServico.pas',
+  u_frmCadServico in 'view\u_frmCadServico.pas' {frmCadServico};
 
 {$R *.res}
 
