@@ -26,7 +26,6 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 ;
 
-
 CREATE TABLE `servicos` (
 	`ser_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`far_id_fk` INT(11) NULL DEFAULT NULL,
@@ -44,12 +43,15 @@ ENGINE=InnoDB
 ;
 
 CREATE TABLE `servicos_itens` (
-	`sit_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`sit_id` INT(11) NOT NULL,
 	`ser_id_fk` INT(11) NOT NULL DEFAULT '0',
+	`tip_id_fk` INT(11) NOT NULL DEFAULT '0',
 	`sit_valor` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
-	PRIMARY KEY (`sit_id`) USING BTREE,
+	PRIMARY KEY (`sit_id`, `ser_id_fk`) USING BTREE,
 	INDEX `FK_servicos_itens_servicos` (`ser_id_fk`) USING BTREE,
-	CONSTRAINT `FK_servicos_itens_servicos` FOREIGN KEY (`ser_id_fk`) REFERENCES `tools`.`servicos` (`ser_id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+	INDEX `FK_servicos_itens_tipos` (`tip_id_fk`) USING BTREE,
+	CONSTRAINT `FK_servicos_itens_servicos` FOREIGN KEY (`ser_id_fk`) REFERENCES `tools`.`servicos` (`ser_id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_servicos_itens_tipos` FOREIGN KEY (`tip_id_fk`) REFERENCES `tools`.`tipos` (`tip_id`) ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
