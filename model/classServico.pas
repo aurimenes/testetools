@@ -18,6 +18,7 @@ type
     procedure SetPaciente(const Value: TPaciente);
     function RetornaItem(IdItem: Integer): TServicoItem;
   public
+    ItensExcluidos: TStringList;
     constructor Create;
     destructor Destroy;
 
@@ -29,7 +30,6 @@ type
     procedure AdicionaItem(Item: TServicoItem);
     procedure ExcluiItem(IdItem: Integer);
     function ListaItens: TList;
-    function RetornaItemId(IdItem: Integer): TServicoItem;
     function RetornaItemPos(PosItem: Integer): TServicoItem;
     procedure LimpaItens;
     function QtdItens: Integer;
@@ -52,6 +52,7 @@ begin
   FPaciente := TPaciente.Create;
   FObservacoes := TStringList.Create;
   FITens := TList.Create;
+  ItensExcluidos := TStringList.Create;
 
   ValorTotal := 0;
 end;
@@ -62,11 +63,24 @@ begin
   FFarmaceutico.Free;
   FPaciente.Free;
   FItens.Free;
+  ItensExcluidos.Free;
 end;
 
 procedure TServico.ExcluiItem(IdItem: Integer);
+var
+  Cont: Integer;
 begin
-  { TODO : Diminuir o valor total }
+  for Cont := 0 to FItens.Count - 1 do
+  begin
+    if TServicoItem(FItens[Cont]).Id = IdItem then
+    begin
+      ValorTotal := ValorTotal - TServicoItem(FItens[Cont]).Valor;
+      ItensExcluidos.Add(IntToStr(IdItem));
+      TServicoItem(FItens[Cont]).Free;
+      FItens.Delete(Cont);
+      Break;
+    end;
+  end;
 end;
 
 procedure TServico.LimpaItens;
@@ -91,11 +105,6 @@ begin
 end;
 
 function TServico.RetornaItem(IdItem: Integer): TServicoItem;
-begin
-
-end;
-
-function TServico.RetornaItemId(IdItem: Integer): TServicoItem;
 begin
 
 end;

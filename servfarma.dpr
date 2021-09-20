@@ -20,7 +20,8 @@ uses
   daoServico in 'dao\daoServico.pas',
   controlServico in 'controller\controlServico.pas',
   u_frmCadServico in 'view\u_frmCadServico.pas' {frmCadServico},
-  classServicoItem in 'model\classServicoItem.pas';
+  classServicoItem in 'model\classServicoItem.pas',
+  u_frmSelecionaTipo in 'view\u_frmSelecionaTipo.pas' {frmSelecionaTipo};
 
 {$R *.res}
 

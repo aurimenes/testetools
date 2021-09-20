@@ -12,6 +12,7 @@ type
     procedure Excluir(AId: Integer); Override;
     function Carregar(AId: Integer): TClasse; Override;
     procedure Listar(ALista: TList);
+    function ValorServico(Id: Integer): Currency;
   end;
 
 implementation
@@ -103,6 +104,18 @@ begin
     ALista.Add(Tipo);
     qryConsulta.Next;
   end;
+end;
+
+function TDaoTipo.ValorServico(Id: Integer): Currency;
+begin
+  qryConsulta.Close;
+  qryConsulta.SQL.Clear;
+  qryConsulta.SQL.Add('select tip_valor from tipos');
+  qryConsulta.SQL.Add('where tip_id = :tip_id');
+  qryConsulta.ParamByName('tip_id').AsInteger := Id;
+  qryConsulta.Open;
+
+  Result := qryConsulta.FieldByName('tip_valor').AsCurrency;
 end;
 
 end.

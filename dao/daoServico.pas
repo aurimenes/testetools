@@ -7,7 +7,10 @@ uses Classe, Dao, classServico, classServicoItem, System.Classes, FireDAC.Comp.C
 type
   TDaoServico = class(TDao)
   private
+    qryAux: TFDQuery;
   public
+    constructor Create(DB: TFDConnection);
+    destructor Destroy;
     procedure Gravar(Classe: TClasse); Override;
     procedure Excluir(AId: Integer); Override;
     function Carregar(AId: Integer): TClasse; Override;
@@ -83,6 +86,22 @@ begin
   end;
 end;
 
+constructor TDaoServico.Create(DB: TFDConnection);
+begin
+  inherited;
+
+  qryAux := TFDQuery.Create(nil);
+  qryAux.Connection := DB;
+  qryAux.Transaction := DB.Transaction;
+end;
+
+destructor TDaoServico.Destroy;
+begin
+  inherited;
+
+  qryConsulta.Free;
+end;
+
 procedure TDaoServico.Excluir(AId: Integer);
 begin
   inherited;
@@ -143,12 +162,39 @@ begin
 
     for Cont := 0 to TServico(Classe).QtdItens - 1 do
     begin
+      if TServico(Classe).RetornaItemPos(Cont).Id = 0 then
+      begin
+        qryAux.Close;
+        qryAux.SQL.Clear;
+        qryAux.SQL.Add('select max(sit_id) + 1 as novo_id from servicos_itens');
+        qryAux.SQL.Add('WHERE ser_id_fk = :ser_id_fk');
+        qryAux.ParamByName('ser_id_fk').AsInteger := TServico(Classe).Id;
+        qryAux.Open;
+
+        TServico(Classe).RetornaItemPos(Cont).Id := qryAux.FieldByName('novo_id').AsInteger;
+      end;
+
       qryConsulta.ParamByName('sit_id').AsInteger := TServico(Classe).RetornaItemPos(Cont).Id;
       qryConsulta.ParamByName('ser_id_fk').AsInteger := TServico(Classe).Id;
       qryConsulta.ParamByName('tip_id_fk').AsInteger := TServico(Classe).RetornaItemPos(Cont).Tipo.Id;
       qryConsulta.ParamByName('sit_valor').AsCurrency := TServico(Classe).RetornaItemPos(Cont).Valor;
       qryConsulta.ExecSQL;
     end;
+  end;
+
+  if (TServico(Classe).ItensExcluidos.Count > 0) then
+  begin
+    for Cont := TServico(Classe).ItensExcluidos.Count - 1 downto 0 do
+    begin
+      qryConsulta.Close;
+      qryConsulta.SQL.Clear;
+      qryConsulta.SQL.Add('delete from servicos_itens where sit_id = :sit_id and ser_id_fk = :ser_id_fk');
+      qryConsulta.ParamByName('sit_id').AsInteger := TServico(Classe).RetornaItemPos(Cont).Id;
+      qryConsulta.ParamByName('ser_id_fk').AsInteger := TServico(Classe).Id;
+      qryConsulta.ExecSQL;
+    end;
+
+    TServico(Classe).ItensExcluidos.Clear;
   end;
 end;
 

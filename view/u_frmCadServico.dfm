@@ -2,7 +2,7 @@ object frmCadServico: TfrmCadServico
   Left = 0
   Top = 0
   Caption = 'Cadastro de Servi'#231'o'
-  ClientHeight = 326
+  ClientHeight = 382
   ClientWidth = 425
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -96,15 +96,15 @@ object frmCadServico: TfrmCadServico
   end
   object grdItens: TStringGrid
     Left = 8
-    Top = 200
+    Top = 198
     Width = 409
-    Height = 87
+    Height = 145
     FixedCols = 0
     TabOrder = 2
   end
   object Button1: TButton
     Left = 261
-    Top = 293
+    Top = 349
     Width = 75
     Height = 25
     Caption = 'Gravar'
@@ -120,28 +120,29 @@ object frmCadServico: TfrmCadServico
   end
   object btnCancelar: TButton
     Left = 342
-    Top = 293
+    Top = 349
     Width = 75
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 5
     OnClick = btnCancelarClick
   end
-  object Button2: TButton
+  object brnNovoItem: TButton
     Left = 115
     Top = 167
     Width = 75
     Height = 25
     Caption = 'Novo Item'
     TabOrder = 6
-    OnClick = Button2Click
+    OnClick = brnNovoItemClick
   end
-  object Button3: TButton
+  object btnExcluiItem: TButton
     Left = 196
     Top = 167
     Width = 75
     Height = 25
     Caption = 'Excluir Item'
     TabOrder = 7
+    OnClick = btnExcluiItemClick
   end
 end
