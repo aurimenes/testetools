@@ -1,1 +1,16 @@
 Projeto Teste - Serviços Farmacêuticos
+Por: Aurimenes Apolônio
+Desenvolvido em Delphi 10.3 com banco de dados MariaDB 10.3
+
+Instruções para execução
+-=-=-=-=-=-=-=-=-=-=-=-=
+
+1. Executar o script para criação do banco e carga inicial de dados (pasta scripts). 
+   O nome default do banco é tools.
+2. Atualizar usuário/senha do banco no uDM.pas (dar dois cliques no componente DB para acessar). 
+   O default é usuário root, sem senha, banco localizado no localhost.
+3. Ajustar a propriedade vendorlib do componente Link que também está no uDM.pas, se necessário
+   (lembrando que a aplicação foi desenvolvida em 32 bis, a DLL também precisa ser 32 bits)
+   Para simplificar, envio também o EXE e a DLL na pasta Win32\Debug
+
+Grato pela oportunidade!

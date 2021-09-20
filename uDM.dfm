@@ -7,7 +7,7 @@ object DM: TDM
     Params.Strings = (
       'Database=tools'
       'User_Name=root'
-      'Password=jesus01'
+      'Password='
       'DriverID=MySQL')
     LoginPrompt = False
     Left = 32
@@ -19,7 +19,7 @@ object DM: TDM
     Top = 16
   end
   object Link: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\_Dots\Projetos\Teste ToolsPharma\Win32\Debug\libmariadb.dll'
+    VendorLib = 'libmariadb.dll'
     Left = 32
     Top = 72
   end
