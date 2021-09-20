@@ -51,7 +51,7 @@ procedure TControlTipo.Gravar(Classe: TClasse);
 begin
   inherited;
 
-  if Classe.Id = -1 then
+  if  TTipo(Classe).Id = -1 then
     raise Exception.Create('Tipo de Serviço Inexistente!');
 
   if TTipo(Classe).Descricao = '' then

@@ -1,6 +1,6 @@
 CREATE TABLE `farmaceuticos` (
 	`far_id` INT(11) NOT NULL AUTO_INCREMENT,
-	`far_nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`far_nome` VARCHAR(100) NOT NULL DEFAULT '0' COLLATE 'latin1_swedish_ci',
 	PRIMARY KEY (`far_id`) USING BTREE
 )
 COLLATE='latin1_swedish_ci'
@@ -9,7 +9,7 @@ ENGINE=InnoDB
 
 CREATE TABLE `pacientes` (
 	`pac_id` INT(11) NOT NULL AUTO_INCREMENT,
-	`pac_nome` VARCHAR(100) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
+	`pac_nome` VARCHAR(100) NOT NULL DEFAULT '0' COLLATE 'latin1_swedish_ci',
 	PRIMARY KEY (`pac_id`) USING BTREE
 )
 COLLATE='latin1_swedish_ci'
@@ -26,6 +26,7 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 ;
 
+
 CREATE TABLE `servicos` (
 	`ser_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`far_id_fk` INT(11) NULL DEFAULT NULL,
@@ -37,6 +38,18 @@ CREATE TABLE `servicos` (
 	INDEX `FK_servicos_pacientes` (`pac_id_fk`) USING BTREE,
 	CONSTRAINT `FK_servicos_farmaceuticos` FOREIGN KEY (`far_id_fk`) REFERENCES `tools`.`farmaceuticos` (`far_id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT `FK_servicos_pacientes` FOREIGN KEY (`pac_id_fk`) REFERENCES `tools`.`pacientes` (`pac_id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+CREATE TABLE `servicos_itens` (
+	`sit_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`ser_id_fk` INT(11) NOT NULL DEFAULT '0',
+	`sit_valor` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+	PRIMARY KEY (`sit_id`) USING BTREE,
+	INDEX `FK_servicos_itens_servicos` (`ser_id_fk`) USING BTREE,
+	CONSTRAINT `FK_servicos_itens_servicos` FOREIGN KEY (`ser_id_fk`) REFERENCES `tools`.`servicos` (`ser_id`) ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB

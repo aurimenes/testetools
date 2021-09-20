@@ -38,7 +38,7 @@ begin
 
     if qryConsulta.IsEmpty then
     begin
-      Result.Id := -1;
+      TServico(Result).Id := -1;
       TServico(Result).Farmaceutico.Id := -1;
       TServico(Result).Farmaceutico.Nome := '';
       TServico(Result).Paciente.Id := -1;
@@ -48,7 +48,7 @@ begin
     end
     else
     begin
-      Result.Id := AId;
+      TServico(Result).Id := AId;
       TServico(Result).Farmaceutico := TFarmaceutico(DaoFarmaceutico.Carregar(qryConsulta.FieldByName('far_id_fk').AsInteger));
       TServico(Result).Paciente := TPaciente(DaoPaciente.Carregar(qryConsulta.FieldByName('pac_id_fk').AsInteger));
       TServico(Result).Observacoes.Text := qryConsulta.FieldByName('ser_obs').AsString;
@@ -56,7 +56,6 @@ begin
     end;
   finally
     DaoFarmaceutico.Free;
-    qryConsulta.Free
   end;
 end;
 
@@ -74,38 +73,38 @@ end;
 
 procedure TDaoServico.Gravar(Classe: TClasse);
 begin
-  try
-    if Classe.Id = 0 then
-    begin
-      qryConsulta.SQL.Add('insert into servicos (far_id_fk, pac_id_fk, ser_obs, ser_valor_total)');
-      qryConsulta.SQL.Add('values (:far_id_fk, :pac_id_fk, :ser_obs, :ser_valor_total)');
-      qryConsulta.ParamByName('far_id_fk').AsInteger := TServico(Classe).Farmaceutico.Id;
-      qryConsulta.ParamByName('pac_id_fk').AsInteger := TServico(Classe).Paciente.Id;
-      qryConsulta.ParamByName('ser_obs').AsString := TServico(Classe).Observacoes.Text;
-      qryConsulta.ParamByName('ser_valor_total').AsCurrency := TServico(Classe).ValorTotal;
-      qryConsulta.ExecSQL;
+  if TServico(Classe).Id = 0 then
+  begin
+    qryConsulta.Close;
+    qryConsulta.SQL.Clear;
+    qryConsulta.SQL.Add('insert into servicos (far_id_fk, pac_id_fk, ser_obs, ser_valor_total)');
+    qryConsulta.SQL.Add('values (:far_id_fk, :pac_id_fk, :ser_obs, :ser_valor_total)');
+    qryConsulta.ParamByName('far_id_fk').AsInteger := TServico(Classe).Farmaceutico.Id;
+    qryConsulta.ParamByName('pac_id_fk').AsInteger := TServico(Classe).Paciente.Id;
+    qryConsulta.ParamByName('ser_obs').AsString := TServico(Classe).Observacoes.Text;
+    qryConsulta.ParamByName('ser_valor_total').AsCurrency := TServico(Classe).ValorTotal;
+    qryConsulta.ExecSQL;
 
-      qryConsulta.SQL.Clear;
-      qryConsulta.SQL.Add('select last_insert_id() as id');
-      qryConsulta.Open;
+    qryConsulta.SQL.Clear;
+    qryConsulta.SQL.Add('select last_insert_id() as id');
+    qryConsulta.Open;
 
-      Classe.Id := qryConsulta.FieldByName('id').AsInteger;
-    end
-    else
-    begin
-      qryConsulta.SQL.Add('update servicos');
-      qryConsulta.SQL.Add('set far_id_fk = :far_id_fk, pac_id_fk = :pac_id_fk,');
-      qryConsulta.SQL.Add('  ser_obs = :ser_obs, ser_valor_total = :ser_valor_total');
-      qryConsulta.SQL.Add('where ser_id = :ser_id');
-      qryConsulta.ParamByName('far_id_fk').AsInteger := TServico(Classe).Farmaceutico.Id;
-      qryConsulta.ParamByName('pac_id_fk').AsInteger := TServico(Classe).Paciente.Id;
-      qryConsulta.ParamByName('ser_obs').AsString := TServico(Classe).Observacoes.Text;
-      qryConsulta.ParamByName('ser_valor_total').AsCurrency := TServico(Classe).ValorTotal;
-      qryConsulta.ParamByName('ser_id').AsInteger := Classe.Id;
-      qryConsulta.ExecSQL;
-    end;
-  finally
-    qryConsulta.Free;
+    TServico(Classe).Id := qryConsulta.FieldByName('id').AsInteger;
+  end
+  else
+  begin
+    qryConsulta.Close;
+    qryConsulta.SQL.Clear;
+    qryConsulta.SQL.Add('update servicos');
+    qryConsulta.SQL.Add('set far_id_fk = :far_id_fk, pac_id_fk = :pac_id_fk,');
+    qryConsulta.SQL.Add('  ser_obs = :ser_obs, ser_valor_total = :ser_valor_total');
+    qryConsulta.SQL.Add('where ser_id = :ser_id');
+    qryConsulta.ParamByName('far_id_fk').AsInteger := TServico(Classe).Farmaceutico.Id;
+    qryConsulta.ParamByName('pac_id_fk').AsInteger := TServico(Classe).Paciente.Id;
+    qryConsulta.ParamByName('ser_obs').AsString := TServico(Classe).Observacoes.Text;
+    qryConsulta.ParamByName('ser_valor_total').AsCurrency := TServico(Classe).ValorTotal;
+    qryConsulta.ParamByName('ser_id').AsInteger := TServico(Classe).Id;
+    qryConsulta.ExecSQL;
   end;
 end;
 

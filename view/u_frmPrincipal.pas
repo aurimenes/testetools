@@ -26,6 +26,7 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
   private
     procedure CarregaGrid;
     { Private declarations }
@@ -50,7 +51,6 @@ end;
 procedure TfrmPrincipal.SpeedButton1Click(Sender: TObject);
 begin
   frmCadServico := TfrmCadServico.Create(Self);
-  frmCadServico.Servico.Id := -1; // Novo Serviço
   frmCadServico.ShowModal;
   FreeAndNil(frmCadServico);
 
@@ -59,6 +59,7 @@ end;
 
 procedure TfrmPrincipal.SpeedButton2Click(Sender: TObject);
 begin
+  { TODO : Validar se existe registro selecionado no grid (grid vazio?) }
   frmCadServico := TfrmCadServico.Create(Self);
   frmCadServico.Servico.Id := StrToInt(grdServicos.Cells[0, grdServicos.Row]); // Serviço Existente
   frmCadServico.ShowModal;
@@ -67,15 +68,31 @@ begin
   CarregaGrid;
 end;
 
+procedure TfrmPrincipal.SpeedButton3Click(Sender: TObject);
+var
+  ControleServico: TControlServico;
+begin
+  { TODO : Validar se existe registro selecionado no grid (grid vazio?) }
+  { TODO : Quando exclui o último item, o grid continua mostrando o item, mesmo não existindo mais }
+  if Application.MessageBox('Confirma a exclusão do item selecionado?', 'Excluir item', MB_YESNO + MB_ICONWARNING) = IDYES then
+  begin
+    ControleServico := TControlServico.Create(DM.DB);
+
+    try
+      ControleServico.Excluir(StrToInt(grdServicos.Cells[0, grdServicos.Row]));
+      CarregaGrid;
+    finally
+      FreeAndNil(ControleServico);
+    end;
+  end;
+end;
+
 procedure TfrmPrincipal.CarregaGrid;
 var
   Lista: TList;
   ControleServico: TControlServico;
   Cont: Integer;
 begin
-  Lista := TList.Create;
-  ControleServico := TControlServico.Create(DM.DB);
-  ControleServico.Listar(Lista);
   grdServicos.RowCount := 0;
   grdServicos.ColWidths[0] := 30;
   grdServicos.ColWidths[1] := 200;
@@ -87,23 +104,34 @@ begin
   grdServicos.Cells[2, 0] := 'Paciente';
   grdServicos.Cells[3, 0] := 'Observações';
   grdServicos.Cells[4, 0] := 'Valor Unit.';
+
+  Lista := TList.Create;
+  ControleServico := TControlServico.Create(DM.DB);
+
   try
+    ControleServico.Listar(Lista);
     grdServicos.ColCount := 5;
+
     for Cont := 0 to Lista.Count - 1 do
     begin
       grdServicos.RowCount := grdServicos.RowCount + 1;
       grdServicos.Cells[0, Cont + 1] := IntToStr(TServico(Lista[Cont]).Id);
       grdServicos.Cells[1, Cont + 1] := TServico(Lista[Cont]).Farmaceutico.Nome;
       grdServicos.Cells[2, Cont + 1] := TServico(Lista[Cont]).Paciente.Nome;
-      grdServicos.Cells[3, Cont + 1] := TServico(Lista[Cont]).Observacoes.Text;
+
+      if (TServico(Lista[Cont]).Observacoes.Count > 0) then
+        grdServicos.Cells[3, Cont + 1] := TServico(Lista[Cont]).Observacoes[0];
+
       grdServicos.Cells[4, Cont + 1] := FormatCurr(',0.00', TServico(Lista[Cont]).ValorTotal);
     end;
   finally
     FreeAndNil(ControleServico);
     FreeAndNil(Lista);
   end;
+
   if grdServicos.RowCount = 1 then
     grdServicos.RowCount := 2;
+
   grdServicos.FixedRows := 1;
 end;
 

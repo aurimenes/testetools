@@ -22,25 +22,21 @@ function TDaoFarmaceutico.Carregar(AId: Integer): TClasse;
 begin
   Result := TFarmaceutico.Create;
 
-  try
-    qryConsulta.Close;
-    qryConsulta.SQL.Add('select far_nome from farmaceuticos');
-    qryConsulta.SQL.Add('where far_id = :far_id');
-    qryConsulta.ParamByName('far_id').AsInteger := AId;
-    qryConsulta.Open;
+  qryConsulta.Close;
+  qryConsulta.SQL.Add('select far_nome from farmaceuticos');
+  qryConsulta.SQL.Add('where far_id = :far_id');
+  qryConsulta.ParamByName('far_id').AsInteger := AId;
+  qryConsulta.Open;
 
-    if qryConsulta.IsEmpty then
-    begin
-      Result.Id := -1;
-      TFarmaceutico(Result).Nome := '';
-    end
-    else
-    begin
-      Result.Id := AId;
-      TFarmaceutico(Result).Nome := qryConsulta.FieldByName('far_nome').AsString;
-    end;
-  finally
-    qryConsulta.Free
+  if qryConsulta.IsEmpty then
+  begin
+    TFarmaceutico(Result).Id := -1;
+    TFarmaceutico(Result).Nome := '';
+  end
+  else
+  begin
+    TFarmaceutico(Result).Id := AId;
+    TFarmaceutico(Result).Nome := qryConsulta.FieldByName('far_nome').AsString;
   end;
 end;
 
@@ -58,31 +54,27 @@ end;
 
 procedure TDaoFarmaceutico.Gravar(Classe: TClasse);
 begin
-  try
-    if Classe.Id = 0 then
-    begin
-      qryConsulta.SQL.Add('insert into farmaceuticos (far_nome)');
-      qryConsulta.SQL.Add('values (:far_nome)');
-      qryConsulta.ParamByName('far_nome').AsString := TFarmaceutico(Classe).Nome;
-      qryConsulta.ExecSQL;
+  if TFarmaceutico(Classe).Id = 0 then
+  begin
+    qryConsulta.SQL.Add('insert into farmaceuticos (far_nome)');
+    qryConsulta.SQL.Add('values (:far_nome)');
+    qryConsulta.ParamByName('far_nome').AsString := TFarmaceutico(Classe).Nome;
+    qryConsulta.ExecSQL;
 
-      qryConsulta.SQL.Clear;
-      qryConsulta.SQL.Add('select last_insert_id() as id');
-      qryConsulta.Open;
+    qryConsulta.SQL.Clear;
+    qryConsulta.SQL.Add('select last_insert_id() as id');
+    qryConsulta.Open;
 
-      Classe.Id := qryConsulta.FieldByName('id').AsInteger;
-    end
-    else
-    begin
-      qryConsulta.SQL.Add('update farmaceuticos');
-      qryConsulta.SQL.Add('set far_nome = :far_nome');
-      qryConsulta.SQL.Add('where far_id = :far_id');
-      qryConsulta.ParamByName('far_id').AsInteger := Classe.Id;
-      qryConsulta.ParamByName('far_nome').AsString := TFarmaceutico(Classe).Nome;
-      qryConsulta.ExecSQL;
-    end;
-  finally
-    qryConsulta.Free;
+    TFarmaceutico(Classe).Id := qryConsulta.FieldByName('id').AsInteger;
+  end
+  else
+  begin
+    qryConsulta.SQL.Add('update farmaceuticos');
+    qryConsulta.SQL.Add('set far_nome = :far_nome');
+    qryConsulta.SQL.Add('where far_id = :far_id');
+    qryConsulta.ParamByName('far_id').AsInteger := TFarmaceutico(Classe).Id;
+    qryConsulta.ParamByName('far_nome').AsString := TFarmaceutico(Classe).Nome;
+    qryConsulta.ExecSQL;
   end;
 end;
 

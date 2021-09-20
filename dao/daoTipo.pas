@@ -22,27 +22,23 @@ function TDaoTipo.Carregar(AId: Integer): TClasse;
 begin
   Result := TTipo.Create;
 
-  try
-    qryConsulta.Close;
-    qryConsulta.SQL.Add('select tip_descricao, tip_valor from tipos');
-    qryConsulta.SQL.Add('where tip_id = :tip_id');
-    qryConsulta.ParamByName('tip_id').AsInteger := AId;
-    qryConsulta.Open;
+  qryConsulta.Close;
+  qryConsulta.SQL.Add('select tip_descricao, tip_valor from tipos');
+  qryConsulta.SQL.Add('where tip_id = :tip_id');
+  qryConsulta.ParamByName('tip_id').AsInteger := AId;
+  qryConsulta.Open;
 
-    if qryConsulta.IsEmpty then
-    begin
-      Result.Id := -1;
-      TTipo(Result).Descricao := '';
-      TTipo(Result).ValorUnit := 0;
-    end
-    else
-    begin
-      Result.Id := AId;
-      TTipo(Result).Descricao := qryConsulta.FieldByName('tip_nome').AsString;
-      TTipo(Result).ValorUnit := qryConsulta.FieldByName('tip_valor').AsCurrency;
-    end;
-  finally
-    qryConsulta.Free
+  if qryConsulta.IsEmpty then
+  begin
+    TTipo(Result).Id := -1;
+    TTipo(Result).Descricao := '';
+    TTipo(Result).ValorUnit := 0;
+  end
+  else
+  begin
+    TTipo(Result).Id := AId;
+    TTipo(Result).Descricao := qryConsulta.FieldByName('tip_nome').AsString;
+    TTipo(Result).ValorUnit := qryConsulta.FieldByName('tip_valor').AsCurrency;
   end;
 end;
 
@@ -60,33 +56,29 @@ end;
 
 procedure TDaoTipo.Gravar(Classe: TClasse);
 begin
-  try
-    if Classe.Id = 0 then
-    begin
-      qryConsulta.SQL.Add('insert into tipos (tip_descricao, tip_valor)');
-      qryConsulta.SQL.Add('values (:tip_descricao, :tip_valor)');
-      qryConsulta.ParamByName('tip_descricao').AsString := TTipo(Classe).Descricao;
-      qryConsulta.ParamByName('tip_valor').AsCurrency := TTipo(Classe).ValorUnit;
-      qryConsulta.ExecSQL;
+  if TTipo(Classe).Id = 0 then
+  begin
+    qryConsulta.SQL.Add('insert into tipos (tip_descricao, tip_valor)');
+    qryConsulta.SQL.Add('values (:tip_descricao, :tip_valor)');
+    qryConsulta.ParamByName('tip_descricao').AsString := TTipo(Classe).Descricao;
+    qryConsulta.ParamByName('tip_valor').AsCurrency := TTipo(Classe).ValorUnit;
+    qryConsulta.ExecSQL;
 
-      qryConsulta.SQL.Clear;
-      qryConsulta.SQL.Add('select last_insert_id() as id');
-      qryConsulta.Open;
+    qryConsulta.SQL.Clear;
+    qryConsulta.SQL.Add('select last_insert_id() as id');
+    qryConsulta.Open;
 
-      Classe.Id := qryConsulta.FieldByName('id').AsInteger;
-    end
-    else
-    begin
-      qryConsulta.SQL.Add('update tipos');
-      qryConsulta.SQL.Add('set tip_descricao = :tip_descricao, tip_valor = :tip_valor');
-      qryConsulta.SQL.Add('where tip_id = :tip_id');
-      qryConsulta.ParamByName('tip_id').AsInteger := Classe.Id;
-      qryConsulta.ParamByName('tip_descricao').AsString := TTipo(Classe).Descricao;
-      qryConsulta.ParamByName('tip_valor').AsCurrency := TTipo(Classe).ValorUnit;
-      qryConsulta.ExecSQL;
-    end;
-  finally
-    qryConsulta.Free;
+    TTipo(Classe).Id := qryConsulta.FieldByName('id').AsInteger;
+  end
+  else
+  begin
+    qryConsulta.SQL.Add('update tipos');
+    qryConsulta.SQL.Add('set tip_descricao = :tip_descricao, tip_valor = :tip_valor');
+    qryConsulta.SQL.Add('where tip_id = :tip_id');
+    qryConsulta.ParamByName('tip_id').AsInteger := TTipo(Classe).Id;
+    qryConsulta.ParamByName('tip_descricao').AsString := TTipo(Classe).Descricao;
+    qryConsulta.ParamByName('tip_valor').AsCurrency := TTipo(Classe).ValorUnit;
+    qryConsulta.ExecSQL;
   end;
 end;
 

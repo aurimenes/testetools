@@ -22,10 +22,12 @@ type
     Button1: TButton;
     Label5: TLabel;
     memObservacoes: TMemo;
+    btnCancelar: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
     ControleServ: TControlServico;
@@ -45,8 +47,27 @@ implementation
 
 uses uDM;
 
+procedure TfrmCadServico.btnCancelarClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TfrmCadServico.Button1Click(Sender: TObject);
 begin
+  if cmbFarmaceutico.ItemIndex < 0 then
+  begin
+    cmbFarmaceutico.SetFocus;
+    Application.MessageBox('Selecione o Farmacêutico!', 'Atenção', MB_ICONWARNING);
+    Exit;
+  end;
+
+  if cmbPaciente.ItemIndex < 0 then
+  begin
+    cmbPaciente.SetFocus;
+    Application.MessageBox('Selecione o Paciente!', 'Atenção', MB_ICONWARNING);
+    Exit;
+  end;
+
   Servico.Farmaceutico.Id := StrToInt(CodFarmaceuticos[cmbFarmaceutico.ItemIndex]);
   Servico.Paciente.Id := StrToInt(CodPacientes[cmbPaciente.ItemIndex]);
   Servico.Observacoes.Text := memObservacoes.Lines.Text;
@@ -71,7 +92,7 @@ begin
 
   DaoFarmaceutico.Listar(Lista);
 
-  for cont := 0 to Lista.Count - 1 do
+  for Cont := 0 to Lista.Count - 1 do
   begin
     CodFarmaceuticos.Add(IntToStr(TFarmaceutico(Lista[Cont]).Id));
     cmbFarmaceutico.Items.Add(TFarmaceutico(Lista[Cont]).Nome);
@@ -82,7 +103,7 @@ begin
 
   DaoPaciente.Listar(Lista);
 
-  for cont := 0 to Lista.Count - 1 do
+  for Cont := 0 to Lista.Count - 1 do
   begin
     CodPacientes.Add(IntToStr(TPaciente(Lista[Cont]).Id));
     cmbPaciente.Items.Add(TPaciente(Lista[Cont]).Nome);
@@ -105,20 +126,19 @@ procedure TfrmCadServico.FormShow(Sender: TObject);
 var
   CodServico: Integer;
 begin
-  if Servico.Id = -1 then
+  if Servico.Id = 0 then
   begin
     lblCodServico.Caption := '<novo serviço>';
     lblValorTotal.Caption := '0,00';
   end
   else
   begin
-    CodServico := Servico.Id;
-    Servico := TServico(ControleServ.Carregar(CodServico));
+    Servico := TServico(ControleServ.Carregar(Servico.Id));
     lblCodServico.Caption := IntToStr(Servico.Id);
-id retornando zero na edição
     cmbFarmaceutico.ItemIndex := cmbFarmaceutico.Items.IndexOf(Servico.Farmaceutico.Nome);
     cmbPaciente.ItemIndex := cmbPaciente.Items.IndexOf(Servico.Paciente.Nome);
     lblValorTotal.Caption := FormatCurr(',0.00', Servico.ValorTotal);
+    memObservacoes.Text := Servico.Observacoes.Text;
   end;
 end;
 

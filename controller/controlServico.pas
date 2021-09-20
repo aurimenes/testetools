@@ -13,7 +13,7 @@ type TControlServico = class(TControle)
     destructor Destroy;
     procedure Gravar(Classe: TClasse); override;
     procedure Excluir(AId: Integer); override;
-    function Carregar(AId: Integer): TClasse;
+    function Carregar(AId: Integer): TClasse; override;
     procedure Listar(var ALista: TList);
 end;
 
@@ -51,9 +51,9 @@ procedure TControlServico.Gravar(Classe: TClasse);
 begin
   inherited;
 
-  if Classe.Id = -1 then
+  if TServico(Classe).Id = -1 then
     raise Exception.Create('Serviço Inexistente!');
-
+  { TODO : Validar paciente e farmacêutico }
 //  if TServico(Classe).Nome = '' then
 //    raise Exception.Create('Informe o nome do Farmacêutico!');
 

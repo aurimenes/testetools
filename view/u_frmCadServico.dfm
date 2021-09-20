@@ -74,9 +74,9 @@ object frmCadServico: TfrmCadServico
   object Label5: TLabel
     Left = 8
     Top = 111
-    Width = 55
+    Width = 67
     Height = 13
-    Caption = 'Valor Total:'
+    Caption = 'Observa'#231#245'es:'
   end
   object cmbFarmaceutico: TComboBox
     Left = 115
@@ -102,7 +102,7 @@ object frmCadServico: TfrmCadServico
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 8
+    Left = 261
     Top = 293
     Width = 75
     Height = 25
@@ -115,8 +115,15 @@ object frmCadServico: TfrmCadServico
     Top = 103
     Width = 302
     Height = 58
-    Lines.Strings = (
-      'memObservacoes')
     TabOrder = 4
+  end
+  object btnCancelar: TButton
+    Left = 342
+    Top = 293
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 5
+    OnClick = btnCancelarClick
   end
 end

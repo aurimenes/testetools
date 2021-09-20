@@ -36,6 +36,7 @@ implementation
 
 constructor TServico.Create;
 begin
+
   FFarmaceutico := TFarmaceutico.Create;
   FPaciente := TPaciente.Create;
   FObservacoes := TStringList.Create;

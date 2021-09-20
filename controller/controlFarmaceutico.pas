@@ -51,7 +51,7 @@ procedure TControlFarmaceutico.Gravar(Classe: TClasse);
 begin
   inherited;
 
-  if Classe.Id = -1 then
+  if TFarmaceutico(Classe).Id = -1 then
     raise Exception.Create('Farmacêutico Inexistente!');
 
   if TFarmaceutico(Classe).Nome = '' then

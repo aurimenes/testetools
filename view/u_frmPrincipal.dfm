@@ -1096,6 +1096,7 @@ object frmPrincipal: TfrmPrincipal
         DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
         DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD}
       Layout = blGlyphTop
+      OnClick = SpeedButton3Click
       ExplicitLeft = 173
       ExplicitTop = -4
       ExplicitHeight = 95

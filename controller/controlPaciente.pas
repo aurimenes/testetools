@@ -51,7 +51,7 @@ procedure TControlPaciente.Gravar(Classe: TClasse);
 begin
   inherited;
 
-  if Classe.Id = -1 then
+  if TPaciente(Classe).Id = -1 then
     raise Exception.Create('Paciente Inexistente!');
 
   if TPaciente(Classe).Nome = '' then
