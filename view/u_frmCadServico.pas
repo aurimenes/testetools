@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls, Vcl.Grids, daoFarmaceutico, classFarmaceutico, DaoPaciente,
-  ClassPaciente, classServico, controlServico;
+  ClassPaciente, classServico, controlServico, classServicoItem;
 
 type
   TfrmCadServico = class(TForm)
@@ -17,7 +17,7 @@ type
     Label3: TLabel;
     cmbPaciente: TComboBox;
     Label4: TLabel;
-    StringGrid1: TStringGrid;
+    grdItens: TStringGrid;
     lblValorTotal: TLabel;
     Button1: TButton;
     Label5: TLabel;
@@ -30,11 +30,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
     ControleServ: TControlServico;
     CodFarmaceuticos: TStringList;
     CodPacientes: TStringList;
+    procedure CarregaGrid;
   public
     { Public declarations }
     Servico: TServico;
@@ -75,6 +77,44 @@ begin
   Servico.Observacoes.Text := memObservacoes.Lines.Text;
   ControleServ.Gravar(Servico);
   Close;
+end;
+
+procedure TfrmCadServico.Button2Click(Sender: TObject);
+var
+  ItemServico: TServicoItem;
+begin
+  ItemServico := TServicoItem.Create;
+
+  ItemServico.Id := 3;
+  ItemServico.Valor := 7.5;
+  ItemServico.Tipo.Id := 3;
+
+  Servico.AdicionaItem(ItemServico);
+end;
+
+procedure TfrmCadServico.CarregaGrid;
+var
+  Cont: Integer;
+begin
+  grdItens.RowCount := 1;
+  grdItens.ColCount := 2;
+  grdItens.ColWidths[0] := 300;
+  grdItens.ColWidths[1] := 75;
+  grdItens.Cells[0, 0] := 'Descrição';
+  grdItens.Cells[1, 0] := 'Valor';
+
+  grdItens.RowCount := Servico.QtdItens + 1;
+
+  for Cont := 0 to Servico.QtdItens - 1 do
+  begin
+    grdItens.Cells[0, Cont + 1] := Servico.RetornaItemPos(Cont).Tipo.Descricao;
+    grdItens.Cells[1, Cont + 1] := FormatCurr(',0.00', Servico.RetornaItemPos(Cont).Valor);
+  end;
+
+  if grdItens.RowCount = 1 then
+    grdItens.RowCount := 2;
+
+  grdItens.FixedRows := 1;
 end;
 
 procedure TfrmCadServico.FormCreate(Sender: TObject);
@@ -141,6 +181,8 @@ begin
     cmbPaciente.ItemIndex := cmbPaciente.Items.IndexOf(Servico.Paciente.Nome);
     lblValorTotal.Caption := FormatCurr(',0.00', Servico.ValorTotal);
     memObservacoes.Text := Servico.Observacoes.Text;
+
+    CarregaGrid;
   end;
 end;
 

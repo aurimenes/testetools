@@ -27,6 +27,9 @@ type
     procedure FormShow(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
   private
     procedure CarregaGrid;
     { Private declarations }
@@ -110,11 +113,12 @@ begin
 
   try
     ControleServico.Listar(Lista);
+    grdServicos.RowCount := Lista.Count + 1;
     grdServicos.ColCount := 5;
 
     for Cont := 0 to Lista.Count - 1 do
     begin
-      grdServicos.RowCount := grdServicos.RowCount + 1;
+
       grdServicos.Cells[0, Cont + 1] := IntToStr(TServico(Lista[Cont]).Id);
       grdServicos.Cells[1, Cont + 1] := TServico(Lista[Cont]).Farmaceutico.Nome;
       grdServicos.Cells[2, Cont + 1] := TServico(Lista[Cont]).Paciente.Nome;
@@ -138,6 +142,21 @@ end;
 procedure TfrmPrincipal.SpeedButton4Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmPrincipal.SpeedButton5Click(Sender: TObject);
+begin
+  Application.MessageBox('Desculpe, esta função está em desenvolvimento!', 'Em desenvolvimento...', MB_OK);
+end;
+
+procedure TfrmPrincipal.SpeedButton6Click(Sender: TObject);
+begin
+  Application.MessageBox('Desculpe, esta função está em desenvolvimento!', 'Em desenvolvimento...', MB_OK);
+end;
+
+procedure TfrmPrincipal.SpeedButton7Click(Sender: TObject);
+begin
+  Application.MessageBox('Desculpe, esta função está em desenvolvimento!', 'Em desenvolvimento...', MB_OK);
 end;
 
 end.

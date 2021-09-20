@@ -94,11 +94,12 @@ object frmCadServico: TfrmCadServico
     Style = csDropDownList
     TabOrder = 1
   end
-  object StringGrid1: TStringGrid
+  object grdItens: TStringGrid
     Left = 8
     Top = 200
     Width = 409
     Height = 87
+    FixedCols = 0
     TabOrder = 2
   end
   object Button1: TButton
@@ -133,6 +134,7 @@ object frmCadServico: TfrmCadServico
     Height = 25
     Caption = 'Novo Item'
     TabOrder = 6
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 196
