@@ -96,9 +96,9 @@ object frmCadServico: TfrmCadServico
   end
   object StringGrid1: TStringGrid
     Left = 8
-    Top = 167
+    Top = 200
     Width = 409
-    Height = 120
+    Height = 87
     TabOrder = 2
   end
   object Button1: TButton
@@ -125,5 +125,21 @@ object frmCadServico: TfrmCadServico
     Caption = 'Cancelar'
     TabOrder = 5
     OnClick = btnCancelarClick
+  end
+  object Button2: TButton
+    Left = 115
+    Top = 167
+    Width = 75
+    Height = 25
+    Caption = 'Novo Item'
+    TabOrder = 6
+  end
+  object Button3: TButton
+    Left = 196
+    Top = 167
+    Width = 75
+    Height = 25
+    Caption = 'Excluir Item'
+    TabOrder = 7
   end
 end

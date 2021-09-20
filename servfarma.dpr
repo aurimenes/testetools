@@ -19,7 +19,8 @@ uses
   controlTipo in 'controller\controlTipo.pas',
   daoServico in 'dao\daoServico.pas',
   controlServico in 'controller\controlServico.pas',
-  u_frmCadServico in 'view\u_frmCadServico.pas' {frmCadServico};
+  u_frmCadServico in 'view\u_frmCadServico.pas' {frmCadServico},
+  classServicoItem in 'model\classServicoItem.pas';
 
 {$R *.res}
 

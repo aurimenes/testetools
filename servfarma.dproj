@@ -120,6 +120,7 @@
             <Form>frmCadServico</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="model\classServicoItem.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

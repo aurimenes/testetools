@@ -23,6 +23,8 @@ type
     Label5: TLabel;
     memObservacoes: TMemo;
     btnCancelar: TButton;
+    Button2: TButton;
+    Button3: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
